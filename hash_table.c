@@ -1,5 +1,4 @@
 // Created by Jagermeister on 8/19/2018.
-
 /* Initialising and deleting
  * We need to define initialisation functions for ht_items.
  * This function allocates a chunk of memory the size of an ht_item,
