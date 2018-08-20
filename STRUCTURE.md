@@ -23,12 +23,12 @@ hour or two to work through.
  
 ## Contents
 
-1. [Introduction](# Introduction)
-2. [Hash table structure](# Hash table structure)
-3. [Hash functions](# Hash functions)
-4. [Handling collisions](#H andling collisions)
-5. [Hash table methods](# Hash table methods)
-6. [Resizing tables](# Resizing tables)
+1. [Introduction](#Introduction)
+2. [Hash table structure](#Hash table structure)
+3. [Hash functions](#Hash functions)
+4. [Handling collisions](#Handling collisions)
+5. [Hash table methods](#Hash table methods)
+6. [Resizing tables](#Resizing tables)
 
 # Introduction
 
@@ -453,7 +453,7 @@ void ht_insert(ht_hash_table* ht, const char* key, const char* value) {
     // ...
 }
 ```
-------------------------------------------------------------------------------------
+
 # Resizing
 
 Currently, our hash table has a fixed number of buckets. As more items are
