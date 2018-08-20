@@ -17,10 +17,10 @@ C is a great language to write a hash table in because:
 - The language doesn't come with one included
 - It is a low-level language, so you get deeper exposure to how things work at a
   machine level
-
+  
 The full implementation is around 200 lines of code, and should take around an
 hour or two to work through.
-------------------------------------------------------------------------------------
+ 
 ##Contents
 
 1. [Introduction](#Introduction)
