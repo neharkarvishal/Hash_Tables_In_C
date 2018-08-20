@@ -1,4 +1,4 @@
-#Writing a hash table in C
+# Writing a hash table in C
 
 [Hash tables](https://en.wikipedia.org/wiki/Hash_table) are one of the most useful data structures. Their quick and scalable
 insert, search and delete make them relevant to a large number of computer
@@ -21,16 +21,16 @@ C is a great language to write a hash table in because:
 The full implementation is around 200 lines of code, and should take around an
 hour or two to work through.
  
-##Contents
+## Contents
 
-1. [Introduction](#Introduction)
-2. [Hash table structure](#Hash table structure)
-3. [Hash functions](#Hash functions)
-4. [Handling collisions](#Handling collisions)
-5. [Hash table methods](#Hash table methods)
-6. [Resizing tables](#Resizing tables)
-------------------------------------------------------------------------------------
-#Introduction
+1. [Introduction](# Introduction)
+2. [Hash table structure](# Hash table structure)
+3. [Hash functions](# Hash functions)
+4. [Handling collisions](#H andling collisions)
+5. [Hash table methods](# Hash table methods)
+6. [Resizing tables](# Resizing tables)
+
+# Introduction
 
 A hash table is a data structure which offers a fast implementation of the
 associative array [API](#api). As the terminology around hash tables can be
@@ -51,7 +51,7 @@ given here are applicable to hash tables which map arbitrary key types to
 arbitrary value types. Only ASCII strings will be supported, as supporting
 unicode is non-trivial and out of scope of this tutorial.
 
-##API
+## API
 
 Associative arrays are a collection of unordered key-value pairs. Duplicate keys
 are not permitted. The following operations are supported:
@@ -62,7 +62,7 @@ are not permitted. The following operations are supported:
 - `delete(a, k)`: delete the `k:v` pair associated with `k`, or do nothing if
   `k` does not exist.
   
-##Code structure
+## Code structure
 
 Code should be laid out in the following directory structure.
 
@@ -75,7 +75,7 @@ Code should be laid out in the following directory structure.
     └── prime.h
 ```
 ------------------------------------------------------------------------------------
-#Hash table structure
+# Hash table structure
 
 Our key-value pairs (items) will each be stored in a `struct`:
 
@@ -99,7 +99,7 @@ typedef struct {
 } ht_hash_table;
 ```
 
-##Initialising and deleting
+## Initialising and deleting
 
 We need to define initialisation functions for `ht_item`s. This function
 allocates a chunk of memory the size of an `ht_item`, and saves a copy of the
@@ -177,7 +177,7 @@ int main() {
 }
 ```
 ------------------------------------------------------------------------------------
-#Hash function
+# Hash function
 
 In this section, we'll write our hash function.
 
@@ -190,7 +190,7 @@ The hash function we choose should:
   buckets than others. This will lead to a higher rate of
   collisions. Collisions reduce the efficiency of our hash table.
 
-##Algorithm
+## Algorithm
 
 We'll make use of a generic string hashing function, expressed below in
 pseudocode.
@@ -235,7 +235,7 @@ Changing the value of `a` give us a different hash function.
 hash("cat", 163, 53) = 3
 ```
 
-##Implementation
+## Implementation
 
 ```c
 // hash_table.c
@@ -250,7 +250,7 @@ static int ht_hash(const char* s, const int a, const int m) {
 }
 ```
 ------------------------------------------------------------------------------------
-##Handling collisions
+## Handling collisions
 
 Hash functions map an infinitely large number of inputs to a finite number of
 outputs. Different input keys will map to the same array index, causing
@@ -285,7 +285,7 @@ making sure it's never 0.
 index = (hash_a(string) + i * (hash_b(string) + 1)) % num_buckets
 ```
 
-##Implementation
+## Implementation
 
 ```c
 // hash_table.c
@@ -298,7 +298,7 @@ static int ht_get_hash(
 }
 ```
 ------------------------------------------------------------------------------------
-#Methods
+# Methods
 
 Our hash function will implement the following API:
 
@@ -309,7 +309,7 @@ char* ht_search(ht_hash_table* ht, const char* key);
 void ht_delete(ht_hash_table* h, const char* key);
 ```
 
-##Insert
+## Insert
 
 To insert a new key-value pair, we iterate through indexes until we find an
 empty bucket. We then insert the item into that bucket and increment the hash
@@ -334,7 +334,7 @@ void ht_insert(ht_hash_table* ht, const char* key, const char* value) {
 }
 ```
 
-##Search
+## Search
 
 Searching is similar to inserting, but at each iteration of the `while` loop,
 we check whether the item's key matches the key we're searching for. If it does,
@@ -359,7 +359,7 @@ char* ht_search(ht_hash_table* ht, const char* key) {
 }
 ```
 
-##Delete
+## Delete
 
 Deleting from an open addressed hash table is more complicated than inserting or
 searching. The item we wish to delete may be part of a collision chain. Removing
@@ -426,7 +426,7 @@ char* ht_search(ht_hash_table* ht, const char* key) {
 }
 ```
 
-##Update
+## Update
 
 Our hash table doesn't currently support updating a key's value. If we insert
 two items with the same key, the keys will collide, and the second item will be
@@ -454,7 +454,7 @@ void ht_insert(ht_hash_table* ht, const char* key, const char* value) {
 }
 ```
 ------------------------------------------------------------------------------------
-#Resizing
+# Resizing
 
 Currently, our hash table has a fixed number of buckets. As more items are
 inserted, the table starts to fill up. This is problematic for two reasons:
@@ -643,10 +643,4 @@ void ht_delete(ht_hash_table* ht, const char* key) {
     // ...
 }
 ```
-------------------------------------------------------------------------------------
-
-------------------------------------------------------------------------------------
-
-------------------------------------------------------------------------------------
-
 ------------------------------------------------------------------------------------
