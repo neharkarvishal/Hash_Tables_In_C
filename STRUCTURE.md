@@ -23,18 +23,17 @@ hour or two to work through.
  
 ## Contents
 
-1. [Introduction](#Introduction)
-2. [Hash table structure](#Hash table structure)
-3. [Hash functions](#Hash functions)
-4. [Handling collisions](#Handling collisions)
-5. [Hash table methods](#Hash table methods)
-6. [Resizing tables](#Resizing tables)
+1. [Introduction]
+2. [Hash table structure]
+3. [Hash functions]
+4. [Handling collisions]
+5. [Hash table methods]
+6. [Resizing tables]
 
 # Introduction
 
 A hash table is a data structure which offers a fast implementation of the
-associative array [API](#api). As the terminology around hash tables can be
-confusing, I've added a summary [below](#terminology).
+associative array [API](#api).
 
 A hash table consists of an array of 'buckets', each of which stores a key-value
 pair. In order to locate the bucket where a key-value pair should be stored, the
@@ -123,7 +122,7 @@ static ht_item* ht_new_item(const char* k, const char* v) {
 
 `ht_new` initialises a new hash table. `size` defines how many items we can
 store. This is fixed at 53 for now. We'll expand this in the section on
-[resizing](/06-resizing). We initialise the array of items with `calloc`, which
+resizing. We initialise the array of items with `calloc`, which
 fills the allocated memory with `NULL` bytes. A `NULL` entry in the array
 indicates that the bucket is empty.
 
@@ -261,9 +260,6 @@ Our hash table will handle collisions using a technique called open addressing
 with double hashing. Double hashing makes use of two hash functions to
 calculate the index an item should be stored at after `i` collisions.
 
-For an overview of other types of collision resolution, see the
-[appendix](/07-appendix).
-
 ##Double hashing
 
 The index that should be used after `i` collisions is given by:
@@ -314,7 +310,7 @@ void ht_delete(ht_hash_table* h, const char* key);
 To insert a new key-value pair, we iterate through indexes until we find an
 empty bucket. We then insert the item into that bucket and increment the hash
 table's `count` attribute, to indicate a new item has been added. A hash table's
-`count` attribute will become useful when we look at [resizing](/06-resizing) in
+`count` attribute will become useful when we look at resizing in
 the next section.
 
 ```c
